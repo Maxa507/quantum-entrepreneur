@@ -3,107 +3,113 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>You're In — Quantum Entrepreneur Waitlist</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+<title>You're In — Quantum Entrepreneur</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--gold:#C9A84C;--gold-light:#E8D5A3;--gold-dark:#8B6914;--bg:#0A0807;--bg2:#110E0B;--bg3:#1A1510;--text:#F2EDE6;--text-muted:#9A8E82;--text-dim:#5C5248;--border:rgba(201,168,76,0.15);--border-strong:rgba(201,168,76,0.35)}
-html{scroll-behavior:smooth}
-body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);font-size:16px;line-height:1.7;overflow-x:hidden}
-.bar{background:linear-gradient(90deg,var(--gold-dark),var(--gold),var(--gold-dark));color:var(--bg);text-align:center;padding:10px 20px;font-size:13px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase}
-nav{background:rgba(10,8,7,0.95);border-bottom:0.5px solid var(--border);padding:18px 40px;display:flex;align-items:center;justify-content:center}
-.logo{font-family:'Playfair Display',serif;font-size:20px;color:var(--gold);letter-spacing:0.02em}
-.hero{text-align:center;padding:80px 40px 64px;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 40%,rgba(201,168,76,0.07) 0%,transparent 70%);pointer-events:none}
-.hero-inner{max-width:700px;margin:0 auto;position:relative;z-index:2}
-.reg-label{font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:24px;display:block}
-.hero h1{font-family:'Playfair Display',serif;font-size:clamp(36px,6vw,64px);font-weight:700;line-height:1.1;color:var(--text);margin-bottom:20px}
-.hero h1 em{color:var(--gold);font-style:italic}
-.hero-sub{font-size:18px;color:var(--text-muted);max-width:520px;margin:0 auto 48px;line-height:1.7}
-.video-placeholder{background:var(--bg2);border:0.5px solid var(--border-strong);border-radius:4px;max-width:640px;margin:0 auto 64px;aspect-ratio:16/9;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;position:relative;overflow:hidden}
-.video-placeholder::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
-.video-icon{width:64px;height:64px;border-radius:50%;border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:24px}
-.video-label{font-size:13px;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-dim)}
-.inbox-block{max-width:640px;margin:0 auto 80px;padding:40px;background:var(--bg2);border:0.5px solid var(--border);display:flex;align-items:flex-start;gap:24px}
-.inbox-icon{font-size:40px;flex-shrink:0}
-.inbox-title{font-size:20px;font-weight:500;color:var(--text);margin-bottom:8px}
-.inbox-body{font-size:15px;color:var(--text-muted);line-height:1.7}
-.inbox-body strong{color:var(--text)}
-.steps-section{padding:0 40px 100px}
-.steps-inner{max-width:700px;margin:0 auto}
-.steps-title{font-family:'Playfair Display',serif;font-size:clamp(24px,4vw,36px);color:var(--text);text-align:center;margin-bottom:48px}
-.steps-title em{color:var(--gold);font-style:italic}
-.step{display:flex;align-items:center;gap:32px;padding:32px 40px;background:var(--bg2);border:0.5px solid var(--border);margin-bottom:1px;transition:border-color 0.3s}
-.step:hover{border-color:var(--border-strong)}
-.step-num{font-family:'Playfair Display',serif;font-size:13px;letter-spacing:0.15em;color:var(--gold);text-transform:uppercase;min-width:56px;flex-shrink:0}
+body{font-family:Georgia,serif;background:#0A0807;color:#F2EDE6;font-size:16px;line-height:1.7}
+.bar{background:#C9A84C;color:#0A0807;text-align:center;padding:10px 20px;font-size:13px;font-weight:bold;letter-spacing:0.08em;text-transform:uppercase}
+nav{background:#0A0807;border-bottom:1px solid rgba(201,168,76,0.3);padding:20px 40px;text-align:center}
+.logo{font-size:22px;color:#C9A84C;letter-spacing:0.05em}
+.hero{text-align:center;padding:80px 40px 60px;max-width:700px;margin:0 auto}
+.reg-label{font-size:12px;letter-spacing:0.2em;text-transform:uppercase;color:#C9A84C;margin-bottom:24px;display:block}
+h1{font-size:48px;font-weight:700;line-height:1.1;color:#F2EDE6;margin-bottom:20px}
+h1 em{color:#C9A84C;font-style:italic}
+.hero-sub{font-size:18px;color:#9A8E82;max-width:500px;margin:0 auto 48px;line-height:1.7}
+.video-box{background:#110E0B;border:1px solid rgba(201,168,76,0.4);max-width:640px;margin:0 auto 64px;padding:80px 40px;text-align:center;border-radius:4px}
+.video-icon{width:60px;height:60px;border-radius:50%;border:1.5px solid #C9A84C;display:flex;align-items:center;justify-content:center;color:#C9A84C;font-size:22px;margin:0 auto 16px}
+.video-label{font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:#5C5248}
+.inbox{max-width:640px;margin:0 auto 60px;padding:36px;background:#110E0B;border:1px solid rgba(201,168,76,0.2);display:flex;gap:24px;align-items:flex-start}
+.inbox-icon{font-size:36px;flex-shrink:0}
+.inbox-title{font-size:19px;font-weight:600;color:#F2EDE6;margin-bottom:8px}
+.inbox-body{font-size:15px;color:#9A8E82;line-height:1.7}
+.inbox-body strong{color:#F2EDE6}
+.steps{max-width:680px;margin:0 auto;padding:0 40px 80px}
+.steps-title{font-size:32px;color:#F2EDE6;text-align:center;margin-bottom:40px;font-weight:700}
+.steps-title em{color:#C9A84C;font-style:italic}
+.step{display:flex;align-items:center;gap:28px;padding:28px 36px;background:#110E0B;border:1px solid rgba(201,168,76,0.15);margin-bottom:2px}
+.step-num{font-size:12px;letter-spacing:0.15em;color:#C9A84C;text-transform:uppercase;min-width:52px;flex-shrink:0}
 .step-content{flex:1}
-.step-title{font-size:17px;font-weight:500;color:var(--text);margin-bottom:6px}
-.step-body{font-size:14px;color:var(--text-muted);line-height:1.6}
-.step-btn{display:inline-block;background:var(--gold);color:var(--bg);padding:14px 32px;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;transition:all 0.3s;white-space:nowrap;flex-shrink:0}
-.step-btn:hover{background:var(--gold-light)}
-.step-btn.outline{background:transparent;border:1px solid var(--gold);color:var(--gold)}
-.step-btn.outline:hover{background:var(--gold);color:var(--bg)}
-footer{background:var(--bg2);border-top:0.5px solid var(--border);padding:40px;text-align:center}
-.footer-logo{font-family:'Playfair Display',serif;font-size:18px;color:var(--gold);margin-bottom:12px}
-.footer-text{font-size:13px;color:var(--text-dim);line-height:1.8}
-@media(max-width:768px){nav{padding:16px 24px}.hero{padding:60px 24px 48px}.inbox-block{flex-direction:column;gap:16px;padding:28px 24px;margin:0 0 60px}.steps-section{padding:0 24px 80px}.step{flex-direction:column;align-items:flex-start;gap:20px;padding:28px 24px}.step-btn{width:100%;text-align:center}}
+.step-title{font-size:17px;font-weight:600;color:#F2EDE6;margin-bottom:6px}
+.step-body{font-size:14px;color:#9A8E82;line-height:1.6}
+.btn{display:inline-block;background:#C9A84C;color:#0A0807;padding:13px 28px;font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;white-space:nowrap;flex-shrink:0;border-radius:2px}
+.btn-outline{background:transparent;border:1px solid #C9A84C;color:#C9A84C}
+footer{background:#110E0B;border-top:1px solid rgba(201,168,76,0.15);padding:40px;text-align:center}
+.footer-logo{font-size:18px;color:#C9A84C;margin-bottom:12px}
+.footer-text{font-size:13px;color:#5C5248;line-height:1.8}
+.footer-text a{color:#C9A84C;text-decoration:none}
+@media(max-width:768px){
+  h1{font-size:32px}
+  .hero{padding:60px 24px 40px}
+  .inbox{flex-direction:column;gap:16px;padding:24px;margin:0 24px 40px}
+  .steps{padding:0 24px 60px}
+  .step{flex-direction:column;align-items:flex-start;gap:16px;padding:24px}
+  .btn{width:100%;text-align:center}
+}
 </style>
 </head>
 <body>
-<div class="bar">Waitlist is now open &nbsp;·&nbsp; Quantum Entrepreneur &nbsp;·&nbsp; June 22–23 Free Challenge</div>
-<nav><div class="logo">Paget Kagy</div></nav>
+
+<div class="bar">Waitlist is now open · Quantum Entrepreneur · June 22–23 Free Challenge</div>
+
+<nav>
+  <div class="logo">Paget Kagy</div>
+</nav>
+
 <section class="hero">
-<div class="hero-inner">
-<span class="reg-label">✦ Waitlist registration confirmed — Quantum Entrepreneur</span>
-<h1>You're in.<br><em>Welcome to the inner circle.</em></h1>
-<p class="hero-sub">Now do one important thing before you close this tab.</p>
-<div class="video-placeholder">
-<div class="video-icon">▶</div>
-<span class="video-label">Video from Paget — coming soon</span>
-</div>
-</div>
+  <span class="reg-label">✦ Waitlist registration confirmed — Quantum Entrepreneur</span>
+  <h1>You're in.<br><em>Welcome to the inner circle.</em></h1>
+  <p class="hero-sub">Now do one important thing before you close this tab.</p>
+  <div class="video-box">
+    <div class="video-icon">▶</div>
+    <div class="video-label">Video from Paget — coming soon</div>
+  </div>
 </section>
-<div class="inbox-block">
-<div class="inbox-icon">📬</div>
-<div>
-<div class="inbox-title">Next, check your inbox</div>
-<p class="inbox-body">I just sent you a confirmation email with everything you need.<br>If you don't see it — check your <strong>spam or Promotions folder</strong> and move it to your primary inbox so you don't miss a thing.</p>
+
+<div class="inbox">
+  <div class="inbox-icon">📬</div>
+  <div>
+    <div class="inbox-title">Next, check your inbox</div>
+    <p class="inbox-body">I just sent you a confirmation email with everything you need.<br>
+    If you don't see it — check your <strong>spam or Promotions folder</strong> and move it to your primary inbox so you don't miss a thing.</p>
+  </div>
 </div>
+
+<div class="steps">
+  <h2 class="steps-title">Complete these steps to<br><em>secure your spot</em></h2>
+
+  <div class="step">
+    <div class="step-num">Step 1</div>
+    <div class="step-content">
+      <div class="step-title">Join the private channel</div>
+      <p class="step-body">This is where everything happens first. I will personally share the program details, exclusive pre-enrollment conditions — and open registration to you before anyone else.</p>
+    </div>
+    <a href="#" class="btn">Join the Channel</a>
+  </div>
+
+  <div class="step">
+    <div class="step-num">Step 2</div>
+    <div class="step-content">
+      <div class="step-title">Save the dates — June 22–23</div>
+      <p class="step-body">A free live 2-day challenge, exclusively for waitlist members. Your first shift starts before the program even begins.</p>
+    </div>
+    <a href="#" class="btn btn-outline">Add to Calendar</a>
+  </div>
+
+  <div class="step">
+    <div class="step-num">Step 3</div>
+    <div class="step-content">
+      <div class="step-title">Invite a friend</div>
+      <p class="step-body">Know someone who's been hitting the same ceiling? The waitlist is still open — but not for long. Share it with someone who's ready.</p>
+    </div>
+    <a href="#" class="btn btn-outline">Share the Waitlist</a>
+  </div>
 </div>
-<section class="steps-section">
-<div class="steps-inner">
-<h2 class="steps-title">Complete these steps to<br><em>secure your spot</em></h2>
-<div class="step">
-<div class="step-num">Step 1</div>
-<div class="step-content">
-<div class="step-title">Join the private channel</div>
-<p class="step-body">This is where everything happens first. I will personally share the program details, exclusive pre-enrollment conditions — and open registration to you before anyone else.</p>
-</div>
-<a href="#" class="step-btn">Join the Private Channel</a>
-</div>
-<div class="step">
-<div class="step-num">Step 2</div>
-<div class="step-content">
-<div class="step-title">Save the dates — June 22–23</div>
-<p class="step-body">A free live 2-day challenge, exclusively for waitlist members. Your first shift starts before the program even begins.</p>
-</div>
-<a href="#" class="step-btn outline">Add to Calendar</a>
-</div>
-<div class="step">
-<div class="step-num">Step 3</div>
-<div class="step-content">
-<div class="step-title">Invite a friend</div>
-<p class="step-body">Know someone who's been hitting the same ceiling? The waitlist is still open — but not for long. Share it with someone who's ready.</p>
-</div>
-<a href="#" class="step-btn outline">Share the Waitlist</a>
-</div>
-</div>
-</section>
+
 <footer>
-<div class="footer-logo">Paget Kagy &nbsp;·&nbsp; Live Empowered</div>
-<p class="footer-text">&copy; 2025 Paget Kagy. All rights reserved.<br>
-<a href="#" style="color:var(--gold);text-decoration:none">Privacy Policy</a> &nbsp;&middot;&nbsp;
-<a href="#" style="color:var(--gold);text-decoration:none">Terms of Service</a></p>
+  <div class="footer-logo">Paget Kagy · Live Empowered</div>
+  <p class="footer-text">© 2025 Paget Kagy. All rights reserved.<br>
+  <a href="#">Privacy Policy</a> · <a href="#">Terms of Service</a></p>
 </footer>
+
 </body>
 </html>
