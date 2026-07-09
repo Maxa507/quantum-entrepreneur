@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Catalyst — Close the goals you keep starting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#050506;
+    --bg-soft:#0b0c0e;
+    --ink:#f4f5f7;
+    --muted:#8a8f98;
+    --muted-dim:#5b6068;
+    --line:rgba(255,255,255,0.09);
+    --line-strong:rgba(255,255,255,0.16);
+    --accent:#b8f0e8;
+    --accent-ink:#04110f;
+    --glow:rgba(150,190,205,0.55);
+    --display:'Space Grotesk',-apple-system,sans-serif;
+    --body:'Inter',-apple-system,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--body);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px}
+  .eyebrow{
+    font-family:var(--body);
+    font-size:.72rem;
+    font-weight:600;
+    letter-spacing:.34em;
+    text-transform:uppercase;
+    color:var(--muted-dim);
+  }
+  h1,h2,h3{font-family:var(--display);font-weight:700;letter-spacing:-.02em;line-height:1.02}
+
+  /* NAV */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:20px 32px;
+    background:linear-gradient(180deg,rgba(5,5,6,.9),rgba(5,5,6,0));
+    backdrop-filter:blur(8px);
+  }
+  .logo{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:600;font-size:1.05rem;letter-spacing:-.01em}
+  .logo svg{width:20px;height:20px;opacity:.9}
+  .nav-links{display:flex;gap:34px;align-items:center}
+  .nav-links a{color:var(--muted);text-decoration:none;font-size:.9rem;transition:color .2s}
+  .nav-links a:hover{color:var(--ink)}
+  .nav-cta{
+    background:var(--accent);color:var(--accent-ink);
+    padding:9px 20px;border-radius:100px;font-weight:600;font-size:.88rem;
+    text-decoration:none;transition:transform .2s,box-shadow .2s;
+  }
+  .nav-cta:hover{transform:translateY(-1px);box-shadow:0 8px 30px rgba(184,240,232,.25)}
+  @media(max-width:720px){.nav-links a:not(.nav-cta){display:none}}
+
+  /* SPHERE */
+  .sphere{
+    position:absolute;border-radius:50%;
+    background:radial-gradient(circle at 42% 38%,#cfe0e6 0%,#8ea6b1 32%,#3f5560 60%,#141a1e 100%);
+    filter:blur(2px);
+    box-shadow:0 0 120px 40px var(--glow), inset -20px -30px 80px rgba(0,0,0,.5);
+    pointer-events:none;
+  }
+
+  /* HERO */
+  header{
+    position:relative;min-height:100vh;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;padding:140px 0 80px;overflow:hidden;
+  }
+  .hero-sphere{
+    width:400px;height:400px;top:50%;left:50%;
+    transform:translate(-50%,-8%);
+    z-index:0;opacity:.5;filter:blur(6px);
+  }
+  /* darkening scrim so text stays readable over the glow */
+  header::after{
+    content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+    background:radial-gradient(ellipse 80% 60% at 50% 42%,rgba(5,5,6,.72) 0%,rgba(5,5,6,.45) 45%,transparent 75%);
+  }
+  header .wrap{position:relative;z-index:2}
+  .hero-eyebrow{margin-bottom:26px;color:#9aa0a8}
+  h1.hero-title{
+    font-size:clamp(2.9rem,7vw,5.6rem);
+    max-width:15ch;margin:0 auto 28px;
+    text-shadow:0 2px 40px rgba(0,0,0,.6);
+  }
+  .hero-desc{
+    max-width:60ch;margin:0 auto 38px;
+    color:#c4c9d0;font-size:clamp(1rem,1.5vw,1.18rem);line-height:1.6;
+    text-shadow:0 1px 20px rgba(0,0,0,.7);
+  }
+  .hero-bullets{
+    display:flex;gap:14px;justify-content:center;flex-wrap:wrap;
+    margin-bottom:44px;color:#aab0b8;font-size:.9rem;letter-spacing:.01em;
+    text-shadow:0 1px 16px rgba(0,0,0,.7);
+  }
+  .hero-bullets span{white-space:nowrap}
+  .hero-bullets span+span::before{content:"·";margin-right:14px;color:var(--line-strong)}
+  .cta-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;align-items:center}
+  .btn-primary{
+    background:var(--accent);color:var(--accent-ink);
+    padding:16px 32px;border-radius:100px;font-weight:600;font-size:1rem;
+    text-decoration:none;border:none;cursor:pointer;
+    transition:transform .2s,box-shadow .2s;
+    font-family:var(--body);
+  }
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(184,240,232,.3)}
+  .btn-ghost{
+    background:transparent;color:var(--ink);
+    padding:16px 30px;border-radius:100px;font-weight:500;font-size:1rem;
+    text-decoration:none;border:1px solid var(--line-strong);cursor:pointer;
+    transition:border-color .2s,background .2s;font-family:var(--body);
+  }
+  .btn-ghost:hover{border-color:var(--ink);background:rgba(255,255,255,.04)}
+  .cta-note{margin-top:22px;color:#9298a0;font-size:.86rem;max-width:44ch;margin-left:auto;margin-right:auto;text-shadow:0 1px 14px rgba(0,0,0,.7)}
+
+  /* SECTIONS */
+  section{position:relative;padding:130px 0}
+  .sec-eyebrow{display:block;text-align:center;margin-bottom:22px}
+  .sec-title{
+    font-size:clamp(2.1rem,4.6vw,3.5rem);
+    text-align:center;max-width:20ch;margin:0 auto;
+  }
+  .sec-sub{
+    text-align:center;max-width:58ch;margin:26px auto 0;
+    color:var(--muted);font-size:1.08rem;
+  }
+
+  /* BLOCK 2 — environment */
+  .env{border-top:1px solid var(--line)}
+  .env-lead{
+    font-family:var(--display);font-weight:600;letter-spacing:-.02em;
+    font-size:clamp(1.9rem,4vw,3rem);line-height:1.12;
+    max-width:22ch;margin:0 auto;text-align:center;
+  }
+  .env-body{max-width:60ch;margin:40px auto 0;text-align:center;color:var(--muted);font-size:1.1rem}
+  .env-accent{
+    max-width:48ch;margin:52px auto 0;text-align:center;
+    font-family:var(--display);font-weight:500;font-size:1.35rem;color:var(--ink);line-height:1.3;
+  }
+
+  /* BLOCK 3 — ecosystem grid */
+  .eco{border-top:1px solid var(--line);background:var(--bg-soft)}
+  .eco-grid{
+    display:grid;grid-template-columns:repeat(2,1fr);gap:1px;
+    margin-top:70px;background:var(--line);border:1px solid var(--line);
+    border-radius:18px;overflow:hidden;
+  }
+  .eco-cell{
+    background:var(--bg-soft);padding:44px 40px;
+    transition:background .3s;
+  }
+  .eco-cell:hover{background:#101215}
+  .eco-cell.wide{grid-column:1 / -1}
+  .eco-num{
+    font-family:var(--display);font-weight:600;font-size:.8rem;
+    color:var(--accent);letter-spacing:.1em;margin-bottom:18px;display:block;
+  }
+  .eco-cell h3{font-size:1.4rem;margin-bottom:14px;letter-spacing:-.01em}
+  .eco-cell p{color:var(--muted);font-size:1rem;line-height:1.62}
+  @media(max-width:720px){.eco-grid{grid-template-columns:1fr}.eco-cell.wide{grid-column:auto}}
+
+  /* BLOCK 4 — cycle timeline */
+  .cycle{border-top:1px solid var(--line)}
+  .cycle-steps{max-width:760px;margin:70px auto 0}
+  .step{
+    display:grid;grid-template-columns:180px 1fr;gap:40px;
+    padding:34px 0;border-top:1px solid var(--line);
+  }
+  .step:last-child{border-bottom:1px solid var(--line)}
+  .step-label{font-family:var(--display);font-weight:600;font-size:1.05rem;color:var(--ink)}
+  .step-label.danger{color:#f4a6a0}
+  .step p{color:var(--muted);font-size:1.02rem}
+  .step p strong{color:var(--ink);font-weight:600}
+  @media(max-width:640px){.step{grid-template-columns:1fr;gap:10px}}
+
+  /* BLOCK 5 — for whom */
+  .whom{border-top:1px solid var(--line);background:var(--bg-soft)}
+  .whom-grid{
+    display:grid;grid-template-columns:repeat(2,1fr);gap:28px;margin-top:64px;
+  }
+  .whom-card{
+    padding:38px 34px;border:1px solid var(--line);border-radius:16px;
+    background:var(--bg);transition:border-color .3s,transform .3s;
+  }
+  .whom-card:hover{border-color:var(--line-strong);transform:translateY(-4px)}
+  .whom-card h3{font-size:1.25rem;margin-bottom:12px}
+  .whom-card p{color:var(--muted);font-size:1rem}
+  .whom-closer{
+    max-width:60ch;margin:60px auto 0;text-align:center;
+    color:var(--muted);font-size:1.08rem;line-height:1.65;
+  }
+  .whom-closer strong{color:var(--ink);font-weight:600}
+  @media(max-width:640px){.whom-grid{grid-template-columns:1fr}}
+
+  /* BLOCK 6 — results placeholder */
+  .results{border-top:1px solid var(--line)}
+  .results-empty{
+    max-width:760px;margin:60px auto 0;padding:60px 40px;
+    border:1px dashed var(--line-strong);border-radius:18px;text-align:center;
+  }
+  .results-empty .tag{
+    display:inline-block;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--muted-dim);border:1px solid var(--line);border-radius:100px;
+    padding:6px 14px;margin-bottom:24px;
+  }
+  .results-stats{
+    display:flex;gap:40px;justify-content:center;flex-wrap:wrap;margin-top:30px;
+    color:var(--muted-dim);font-family:var(--display);font-size:1rem;
+  }
+
+  /* BLOCK 7 — pricing */
+  .price{border-top:1px solid var(--line);background:var(--bg-soft)}
+  .price-card{
+    max-width:640px;margin:60px auto 0;padding:52px 48px;
+    border:1px solid var(--line-strong);border-radius:22px;
+    background:linear-gradient(180deg,#0e1013,#090a0c);
+    position:relative;overflow:hidden;
+  }
+  .price-card::before{
+    content:"";position:absolute;top:-60%;right:-30%;width:400px;height:400px;
+    background:radial-gradient(circle,var(--glow),transparent 65%);opacity:.25;pointer-events:none;
+  }
+  .price-amt{font-family:var(--display);font-weight:700;font-size:3rem;letter-spacing:-.03em}
+  .price-amt span{font-size:1.1rem;color:var(--muted);font-weight:500}
+  .price-list{list-style:none;margin:34px 0 0}
+  .price-list li{
+    padding:15px 0 15px 32px;border-top:1px solid var(--line);
+    position:relative;color:var(--muted);font-size:1rem;
+  }
+  .price-list li strong{color:var(--ink);font-weight:600}
+  .price-list li::before{
+    content:"";position:absolute;left:2px;top:22px;width:12px;height:12px;
+    border-left:2px solid var(--accent);border-bottom:2px solid var(--accent);
+    transform:rotate(-45deg);
+  }
+  .price-actions{display:flex;flex-direction:column;gap:14px;margin-top:38px}
+  .price-actions .btn-primary,.price-actions .btn-ghost{text-align:center}
+  .price-note{text-align:center;color:var(--muted-dim);font-size:.85rem;margin-top:18px}
+
+  /* BLOCK 8 — why now */
+  .why{border-top:1px solid var(--line)}
+  .why-body{max-width:60ch;margin:36px auto 0;text-align:center;color:var(--muted);font-size:1.1rem}
+  .why .cta-row{margin-top:44px}
+
+  /* BLOCK 9 — FAQ */
+  .faq{border-top:1px solid var(--line);background:var(--bg-soft)}
+  .faq-list{max-width:760px;margin:60px auto 0}
+  .faq-item{border-top:1px solid var(--line)}
+  .faq-item:last-child{border-bottom:1px solid var(--line)}
+  .faq-q{
+    width:100%;background:none;border:none;cursor:pointer;
+    display:flex;justify-content:space-between;align-items:center;gap:20px;
+    padding:26px 0;text-align:left;color:var(--ink);
+    font-family:var(--display);font-weight:600;font-size:1.12rem;letter-spacing:-.01em;
+  }
+  .faq-q .plus{flex-shrink:0;width:20px;height:20px;position:relative;transition:transform .3s}
+  .faq-q .plus::before,.faq-q .plus::after{
+    content:"";position:absolute;background:var(--accent);
+    top:50%;left:50%;transform:translate(-50%,-50%);
+  }
+  .faq-q .plus::before{width:16px;height:2px}
+  .faq-q .plus::after{width:2px;height:16px;transition:transform .3s}
+  .faq-item.open .plus::after{transform:translate(-50%,-50%) rotate(90deg);opacity:0}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease}
+  .faq-a p{padding:0 0 26px;color:var(--muted);font-size:1.02rem;line-height:1.65;max-width:64ch}
+
+  /* BLOCK 10 — final CTA */
+  .final{
+    position:relative;border-top:1px solid var(--line);
+    text-align:center;padding:150px 0;overflow:hidden;
+  }
+  .final-sphere{width:460px;height:460px;top:50%;left:50%;transform:translate(-50%,-50%);z-index:0;opacity:.7}
+  .final .wrap{position:relative;z-index:2}
+  .final h2{font-size:clamp(2.4rem,5.5vw,4.4rem);max-width:16ch;margin:0 auto 40px}
+
+  /* FOOTER */
+  footer{border-top:1px solid var(--line);padding:50px 0;text-align:center}
+  footer .logo{justify-content:center;margin-bottom:18px}
+  footer p{color:var(--muted-dim);font-size:.84rem}
+
+  .fade{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+  .fade.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){.fade{opacity:1;transform:none;transition:none}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="4"/><ellipse cx="12" cy="12" rx="10" ry="4.5" transform="rotate(30 12 12)"/><ellipse cx="12" cy="12" rx="10" ry="4.5" transform="rotate(-30 12 12)"/></svg>
+    Catalyst
+  </div>
+  <div class="nav-links">
+    <a href="#ecosystem">System</a>
+    <a href="#cycle">The Cycle</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#pricing" class="nav-cta">Activate</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header>
+  <div class="sphere hero-sphere"></div>
+  <div class="wrap">
+    <div class="eyebrow hero-eyebrow fade">A closed system for high performers</div>
+    <h1 class="hero-title fade">Reach goals among people who are used to winning</h1>
+    <p class="hero-desc fade">Catalyst is a closed system for high performers, where tasks get finished. A hard, precision-built machine that adapts to your resources and turns your peak into your daily baseline.</p>
+    <div class="hero-bullets fade">
+      <span>30-day cycles</span>
+      <span>Mastermind groups of 10</span>
+      <span>World-class coaches</span>
+    </div>
+    <div class="cta-row fade">
+      <a href="#pricing" class="btn-primary">Activate Catalyst · $49.99/mo</a>
+      <a href="#pricing" class="btn-ghost">Start a 7-day sprint · $15</a>
+    </div>
+    <p class="cta-note fade">We don't take anyone into the cohort who isn't ready to back their word. Cancel in one click.</p>
+  </div>
+</header>
+
+<!-- BLOCK 2 · ENVIRONMENT -->
+<section class="env">
+  <div class="wrap">
+    <span class="eyebrow sec-eyebrow fade">The environment</span>
+    <p class="env-lead fade">Alone, you're strong. In the right circle, you're unstoppable.</p>
+    <p class="env-body fade">You already achieve what most people can't. It was never about ability — you have that. The question is what power level you're running at. And power is set by your environment. The best athletes grow inside the strongest teams. The best founders grow inside the strongest circles. The room raises the bar higher than you'd set it for yourself.</p>
+    <p class="env-accent fade">Catalyst puts people who are used to winning around you. And your peak becomes your baseline.</p>
+  </div>
+</section>
+
+<!-- BLOCK 3 · ECOSYSTEM -->
+<section class="eco" id="ecosystem">
+  <div class="wrap">
+    <span class="eyebrow sec-eyebrow fade">The ecosystem</span>
+    <h2 class="sec-title fade">What's inside the Catalyst ecosystem</h2>
+    <p class="sec-sub fade">No feel-good motivation. Every tool adapts to your goal, your pace, your resources. A hard, precision-built machine engineered to make you finish.</p>
+    <div class="eco-grid">
+      <div class="eco-cell fade">
+        <span class="eco-num">01</span>
+        <h3>Personal AI roadmap</h3>
+        <p>Big goals scare you into procrastination. Catalyst AI takes your global objective, finds the points where you usually sabotage yourself, and breaks it into clear daily actions. You stop wondering where to start. You open the app and see the one concrete step for today.</p>
+      </div>
+      <div class="eco-cell fade">
+        <span class="eco-num">02</span>
+        <h3>Daily audit &amp; reflection</h3>
+        <p>Your evening ritual of honesty with yourself. You close out the day, log your mistakes, plan tomorrow. Your report goes straight to the group. Either you submit on time, or you take your first step toward elimination. There is no third option.</p>
+      </div>
+      <div class="eco-cell fade">
+        <span class="eco-num">03</span>
+        <h3>Closed mastermind</h3>
+        <p>You land in a tight cohort of people strictly at your level — similar budget, same category of goals. Daily breakdowns of what hurts, shared tools, real social pressure. You watch the others move, and you physically can't lower the bar.</p>
+      </div>
+      <div class="eco-cell fade">
+        <span class="eco-num">04</span>
+        <h3>Max-speed challenge: 30-day cycles</h3>
+        <p>A mode of extreme accountability for those who need a breakthrough. You put real money on your own result. Either you reach the end and take your cash back along with a new reality — or you miss two days, drop out, and lose your stake in front of the group. It works better than any motivation.</p>
+      </div>
+      <div class="eco-cell wide fade">
+        <span class="eco-num">05</span>
+        <h3>Your mentor</h3>
+        <p>You choose a mentor for your category: Money, Discipline, Body, or Relationships. No generic auto-tips scraped off the internet — you get their philosophy, their voice in your feed, and their exclusive 10-day intensive to carry you through the most fragile phase: the start.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOCK 4 · CYCLE -->
+<section class="cycle" id="cycle">
+  <div class="wrap">
+    <span class="eyebrow sec-eyebrow fade">The cycle</span>
+    <h2 class="sec-title fade">30 days. One mode. Full commitment.</h2>
+    <p class="sec-sub fade">You load money onto your own result, activate the protocol, and switch into a mode of extreme accountability. Reach the end — take the bank. Slip — your stake burns in front of the group. Fair rules for people who respect their word.</p>
+    <div class="cycle-steps">
+      <div class="step fade">
+        <div class="step-label">Morning — the plan is ready</div>
+        <p>Open the app and see today's tasks. No wondering where to begin.</p>
+      </div>
+      <div class="step fade">
+        <div class="step-label">Day — track your motion</div>
+        <p>Check off tasks and habits, update progress. Every move is visible to you and to the group.</p>
+      </div>
+      <div class="step fade">
+        <div class="step-label">Evening — reflection</div>
+        <p>Close the day, rate it, plan tomorrow. Your report goes to the group — they hold you the same way you hold them.</p>
+      </div>
+      <div class="step fade">
+        <div class="step-label danger">The two-lives rule</div>
+        <p>You get exactly <strong>two</strong> margins for error across 30 days. Miss the evening deadline and the system deducts one life automatically. Miss two days in a row and the protocol closes: you drop out of the mastermind, and your money burns. No exceptions.</p>
+      </div>
+      <div class="step fade">
+        <div class="step-label">Day 30 — the stake is yours</div>
+        <p>Reach the end and your money returns to your balance — withdraw it anytime. Then you enter the next cycle at a new level.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOCK 5 · FOR WHOM -->
+<section class="whom">
+  <div class="wrap">
+    <span class="eyebrow sec-eyebrow fade">Who it's for</span>
+    <h2 class="sec-title fade">For those who play at a high level</h2>
+    <p class="sec-sub fade">Catalyst wasn't built to rescue the lazy. It was built for people who are already successful and refuse to settle.</p>
+    <div class="whom-grid">
+      <div class="whom-card fade">
+        <h3>You already deliver — and want more</h3>
+        <p>You know what it takes to finish. Now you need an environment that raises the bar even higher.</p>
+      </div>
+      <div class="whom-card fade">
+        <h3>You've outgrown trackers</h3>
+        <p>Todoist, planners, habit apps — all behind you. What's missing isn't a tool. It's the circle and the stake.</p>
+      </div>
+      <div class="whom-card fade">
+        <h3>You want a circle of your caliber</h3>
+        <p>Too many people around you are fine with "good enough." Here are people who do the work every day. Their level becomes yours.</p>
+      </div>
+      <div class="whom-card fade">
+        <h3>You go all in</h3>
+        <p>You're not looking for a place to relax. You're looking for a place to push and take the next height.</p>
+      </div>
+    </div>
+    <p class="whom-closer fade">Most apps are built to pity you — pat you on the head and say you did great, even if you did nothing today. <strong>Catalyst is built the opposite way.</strong> If you come here, you're knowingly signing up for maximum commitment. You're looking for the point of extreme tension, so you can take your next major height.</p>
+  </div>
+</section>
+
+<!-- BLOCK 6 · RESULTS -->
+<section class="results">
+  <div class="wrap">
+    <span class="eyebrow sec-eyebrow fade">Results</span>
+    <h2 class="sec-title fade">Results from those who finished a cycle</h2>
+    <div class="results-empty fade">
+      <span class="tag">Coming soon</span>
+      <p style="color:var(--muted);max-width:48ch;margin:0 auto">Real cases land here after the first cycles — name, photo, goal, 30-day result, and a link to the profile.</p>
+      <div class="results-stats">
+        <span>— finished cycle 1</span>
+        <span>—% reached day 30</span>
+        <span>avg. goal progress</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOCK 7 · PRICING -->
+<section class="price" id="pricing">
+  <div class="wrap">
+    <span class="eyebrow sec-eyebrow fade">Pricing</span>
+    <h2 class="sec-title fade">One entry. The whole space is yours.</h2>
+    <div class="price-card fade">
+      <div class="price-amt">$49.99<span> / month</span></div>
+      <ul class="price-list">
+        <li><strong>Your goals, run by AI.</strong> Your global objective broken into daily steps with hard sabotage-risk analysis.</li>
+        <li><strong>Tools for total control.</strong> Daily audit, tasks, habits, and evening reflection with deadlines.</li>
+        <li><strong>Elite environment.</strong> A closed feed and mastermind groups strictly at your level, for cross-accountability.</li>
+        <li><strong>Direct connection.</strong> DMs, networking, and private chats inside the ecosystem.</li>
+        <li><strong>Your mentor.</strong> A top coach's philosophy and 10-day exclusive intensive for your category — Money, Discipline, Body, Relationships.</li>
+        <li><strong>Access to challenges.</strong> The right to enter 30-day cycles and put real money on your own word.</li>
+      </ul>
+      <div class="price-actions">
+        <a href="#" class="btn-primary">Activate Catalyst</a>
+        <a href="#" class="btn-ghost">Try 7 days of the full cycle for $15</a>
+      </div>
+      <p class="price-note">Cancel your subscription in one click.</p>
+    </div>
+  </div>
+</section>
+
+<!-- BLOCK 8 · WHY NOW -->
+<section class="why">
+  <div class="wrap">
+    <span class="eyebrow sec-eyebrow fade">Why now</span>
+    <h2 class="sec-title fade">Your level starts rising the day you walk in</h2>
+    <p class="why-body fade">The gap between those who take new heights and those who stay put isn't talent. It's that the first group landed in the right environment at the right time. It's already forming. People of your caliber are here right now — closing goals, holding the bar, moving forward. Every day you wait is a day spent in the wrong room.</p>
+    <div class="cta-row fade">
+      <a href="#pricing" class="btn-primary">Start a 7-day sprint · $15</a>
+    </div>
+  </div>
+</section>
+
+<!-- BLOCK 9 · FAQ -->
+<section class="faq">
+  <div class="wrap">
+    <span class="eyebrow sec-eyebrow fade">Questions</span>
+    <h2 class="sec-title fade">Answers</h2>
+    <div class="faq-list">
+      <div class="faq-item fade">
+        <button class="faq-q">Do I have to put money on a cycle?<span class="plus"></span></button>
+        <div class="faq-a"><p>No. At your own pace you can use AI roadmaps, run your daily audit and reflection, talk inside masterminds, read the closed feed, and absorb the mentors' philosophy — with no extra conditions. The financial stake is strictly for entering the hardcore 30-day cycles. It's a tool of extreme accountability. If you feel ready to play big, lock your word with money, and make a leap — you activate a cycle. If not, you keep using Catalyst as a premium space for growth, with no stakes. The choice is always yours.</p></div>
+      </div>
+      <div class="faq-item fade">
+        <button class="faq-q">What happens to the stake?<span class="plus"></span></button>
+        <div class="faq-a"><p>You choose the amount, and you place it only when you're ready. Reach the end of the cycle — the money returns to your balance and you withdraw it. Slip — the stake burns. That's exactly what keeps you in the game all 30 days.</p></div>
+      </div>
+      <div class="faq-item fade">
+        <button class="faq-q">How is this different from trackers like Todoist?<span class="plus"></span></button>
+        <div class="faq-a"><p>A tracker is a list only you see, and quitting it costs you nothing. Catalyst is an environment: the group sees you, you have a real stake, and the AI breaks the goal into steps for you. Tasks are just one of the mechanisms. What works is everything around you.</p></div>
+      </div>
+      <div class="faq-item fade">
+        <button class="faq-q">What group? I don't know anyone there.<span class="plus"></span></button>
+        <div class="faq-a"><p>That's the strength of it. You're placed in a mastermind of 10 people at your level with close goals. Keeping your word in front of a circle of equals turns out to be easier than keeping it to yourself. Many stay in touch long after the cycle.</p></div>
+      </div>
+      <div class="faq-item fade">
+        <button class="faq-q">What if I miss a day due to an emergency?<span class="plus"></span></button>
+        <div class="faq-a"><p>You have two lives per cycle — one slip doesn't knock you out. The system reminds you about reflection ahead of time and lets you close the day before the deadline.</p></div>
+      </div>
+      <div class="faq-item fade">
+        <button class="faq-q">Is putting money on it even legal?<span class="plus"></span></button>
+        <div class="faq-a"><p>Yes. This isn't betting or gambling. You place a deposit on your own goal and get it back on completion. You're playing against your own procrastination — not against a casino.</p></div>
+      </div>
+      <div class="faq-item fade">
+        <button class="faq-q">How much does it cost?<span class="plus"></span></button>
+        <div class="faq-a"><p>Full access is $49.99/mo. You can start with a 7-day sprint for $15. Cancel your subscription in one click.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOCK 10 · FINAL CTA -->
+<section class="final">
+  <div class="sphere final-sphere"></div>
+  <div class="wrap">
+    <span class="eyebrow sec-eyebrow fade">Begin</span>
+    <h2 class="fade">Take your place among those who win</h2>
+    <div class="cta-row fade">
+      <a href="#pricing" class="btn-primary">Activate Catalyst · $49.99/mo</a>
+      <a href="#pricing" class="btn-ghost">Start a 7-day sprint · $15</a>
+    </div>
+    <p class="cta-note fade">We don't take anyone into the cohort who isn't ready to back their word. Cancel in one click.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="logo">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="4"/><ellipse cx="12" cy="12" rx="10" ry="4.5" transform="rotate(30 12 12)"/><ellipse cx="12" cy="12" rx="10" ry="4.5" transform="rotate(-30 12 12)"/></svg>
+    Catalyst
+  </div>
+  <p>© 2026 Catalyst. Back your word.</p>
+</footer>
+
+<script>
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(function(q){
+    q.addEventListener('click',function(){
+      var item=q.parentElement;
+      var a=q.nextElementSibling;
+      var open=item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(function(i){
+        i.classList.remove('open');
+        i.querySelector('.faq-a').style.maxHeight=null;
+      });
+      if(!open){
+        item.classList.add('open');
+        a.style.maxHeight=a.scrollHeight+'px';
+      }
+    });
+  });
+
+  // Fade-in on scroll
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:0.12});
+  document.querySelectorAll('.fade').forEach(function(el){ io.observe(el); });
+</script>
+
+</body>
+</html>
