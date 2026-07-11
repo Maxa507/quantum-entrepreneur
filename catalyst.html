@@ -101,6 +101,7 @@
     color:#c4c9d0;font-size:clamp(1rem,1.5vw,1.18rem);line-height:1.6;
     text-shadow:0 1px 20px rgba(0,0,0,.7);
   }
+  .hero-desc strong{color:#fff;font-weight:700}
   .hero-bullets{
     display:flex;gap:14px;justify-content:center;flex-wrap:wrap;
     margin-bottom:44px;color:#aab0b8;font-size:.9rem;letter-spacing:.01em;
@@ -135,7 +136,7 @@
   }
   .sec-sub{
     text-align:center;max-width:58ch;margin:26px auto 0;
-    color:var(--muted);font-size:1.08rem;
+    color:#c4c9d0;font-size:1.08rem;
   }
 
   /* BLOCK 2 — environment */
@@ -170,6 +171,7 @@
   }
   .eco-cell h3{font-size:1.4rem;margin-bottom:14px;letter-spacing:-.01em}
   .eco-cell p{color:var(--muted);font-size:1rem;line-height:1.62}
+  .eco-cell p + p{margin-top:14px}
   @media(max-width:720px){.eco-grid{grid-template-columns:1fr}.eco-cell.wide{grid-column:auto}}
 
   /* BLOCK 4 — cycle timeline */
@@ -187,22 +189,19 @@
   @media(max-width:640px){.step{grid-template-columns:1fr;gap:10px}}
 
   /* BLOCK 5 — for whom */
-  .whom{border-top:1px solid var(--line);background:var(--bg-soft)}
+  .whom{border-top:1px solid var(--line);background:var(--bg-soft);padding-top:100px;padding-bottom:100px}
+  .whom .sec-title{max-width:30ch}
+  .whom-hi{color:var(--accent)}
   .whom-grid{
-    display:grid;grid-template-columns:repeat(2,1fr);gap:28px;margin-top:64px;
+    display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:44px;
   }
   .whom-card{
-    padding:38px 34px;border:1px solid var(--line);border-radius:16px;
+    padding:32px 30px;border:1px solid var(--line);border-radius:16px;
     background:var(--bg);transition:border-color .3s,transform .3s;
   }
   .whom-card:hover{border-color:var(--line-strong);transform:translateY(-4px)}
   .whom-card h3{font-size:1.25rem;margin-bottom:12px}
   .whom-card p{color:var(--muted);font-size:1rem}
-  .whom-closer{
-    max-width:60ch;margin:60px auto 0;text-align:center;
-    color:var(--muted);font-size:1.08rem;line-height:1.65;
-  }
-  .whom-closer strong{color:var(--ink);font-weight:600}
   @media(max-width:640px){.whom-grid{grid-template-columns:1fr}}
 
   /* BLOCK 6 — results placeholder */
@@ -307,7 +306,7 @@
     <a href="#ecosystem">System</a>
     <a href="#cycle">The Cycle</a>
     <a href="#pricing">Pricing</a>
-    <a href="#pricing" class="nav-cta">Activate</a>
+    <a href="#pricing" class="nav-cta">Start 7-day sprint · $15</a>
   </div>
 </nav>
 
@@ -315,9 +314,9 @@
 <header>
   <div class="sphere hero-sphere"></div>
   <div class="wrap">
-    <div class="eyebrow hero-eyebrow fade">A closed system for high performers</div>
+    <div class="eyebrow hero-eyebrow fade">For high performers</div>
     <h1 class="hero-title fade">Reach goals among people who are used to winning</h1>
-    <p class="hero-desc fade">Catalyst is a closed system for high performers, where tasks get finished. A hard, precision-built machine that adapts to your resources and turns your peak into your daily baseline.</p>
+    <p class="hero-desc fade"><strong>Catalyst</strong> is a closed system for high performers, where tasks get finished. A hard, precision-built machine that adapts to your resources and turns your peak into your daily baseline.</p>
     <div class="hero-bullets fade">
       <span>30-day cycles</span>
       <span>Mastermind groups of 10</span>
@@ -325,9 +324,8 @@
     </div>
     <div class="cta-row fade">
       <a href="#pricing" class="btn-primary">Activate Catalyst · $49.99/mo</a>
-      <a href="#pricing" class="btn-ghost">Start a 7-day sprint · $15</a>
     </div>
-    <p class="cta-note fade">We don't take anyone into the cohort who isn't ready to back their word. Cancel in one click.</p>
+    <p class="cta-note fade">Cancel in one click.</p>
   </div>
 </header>
 
@@ -336,7 +334,7 @@
   <div class="wrap">
     <span class="eyebrow sec-eyebrow fade">The environment</span>
     <p class="env-lead fade">Alone, you're strong. In the right circle, you're unstoppable.</p>
-    <p class="env-body fade">You already achieve what most people can't. It was never about ability — you have that. The question is what power level you're running at. And power is set by your environment. The best athletes grow inside the strongest teams. The best founders grow inside the strongest circles. The room raises the bar higher than you'd set it for yourself.</p>
+    <p class="env-body fade">You already achieve what most people can't. It was never about ability — you have that. The question is what power level you're running at. And power is set by your environment.</p>
     <p class="env-accent fade">Catalyst puts people who are used to winning around you. And your peak becomes your baseline.</p>
   </div>
 </section>
@@ -346,32 +344,37 @@
   <div class="wrap">
     <span class="eyebrow sec-eyebrow fade">The ecosystem</span>
     <h2 class="sec-title fade">What's inside the Catalyst ecosystem</h2>
-    <p class="sec-sub fade">No feel-good motivation. Every tool adapts to your goal, your pace, your resources. A hard, precision-built machine engineered to make you finish.</p>
     <div class="eco-grid">
       <div class="eco-cell fade">
         <span class="eco-num">01</span>
         <h3>Personal AI roadmap</h3>
-        <p>Big goals scare you into procrastination. Catalyst AI takes your global objective, finds the points where you usually sabotage yourself, and breaks it into clear daily actions. You stop wondering where to start. You open the app and see the one concrete step for today.</p>
+        <p>Big goals scare you into procrastination. Catalyst AI takes your global objective, finds the points where you usually sabotage yourself, and breaks it into clear daily actions.</p>
+        <p>You open the app and see the one concrete step for today.</p>
       </div>
       <div class="eco-cell fade">
         <span class="eco-num">02</span>
-        <h3>Daily audit &amp; reflection</h3>
-        <p>Your evening ritual of honesty with yourself. You close out the day, log your mistakes, plan tomorrow. Your report goes straight to the group. Either you submit on time, or you take your first step toward elimination. There is no third option.</p>
+        <h3>Daily reflection</h3>
+        <p>You close out the day, log your mistakes, plan tomorrow.</p>
+        <p>Your report goes straight to the group.</p>
+        <p>Either you submit it on time, or you take your first step toward elimination.</p>
       </div>
       <div class="eco-cell fade">
         <span class="eco-num">03</span>
         <h3>Closed mastermind</h3>
-        <p>You land in a tight cohort of people strictly at your level — similar budget, same category of goals. Daily breakdowns of what hurts, shared tools, real social pressure. You watch the others move, and you physically can't lower the bar.</p>
+        <p>You land in a tight cohort of people strictly at your level — similar budget, same category of goals. Daily breakdowns of what hurts, shared tools, real social pressure.</p>
+        <p>You watch the others move, and you physically can't lower the bar.</p>
       </div>
       <div class="eco-cell fade">
         <span class="eco-num">04</span>
         <h3>Max-speed challenge: 30-day cycles</h3>
-        <p>A mode of extreme accountability for those who need a breakthrough. You put real money on your own result. Either you reach the end and take your cash back along with a new reality — or you miss two days, drop out, and lose your stake in front of the group. It works better than any motivation.</p>
+        <p>You put real money on your own result. Either you reach the end and take your cash back along with a new reality — or you miss two days, drop out, and lose your stake in front of the group.</p>
+        <p>It works better than any motivation.</p>
       </div>
       <div class="eco-cell wide fade">
         <span class="eco-num">05</span>
         <h3>Your mentor</h3>
-        <p>You choose a mentor for your category: Money, Discipline, Body, or Relationships. No generic auto-tips scraped off the internet — you get their philosophy, their voice in your feed, and their exclusive 10-day intensive to carry you through the most fragile phase: the start.</p>
+        <p>You choose a mentor for your category: Money, Discipline, Body, or Relationships.</p>
+        <p>You get their philosophy, their voice in your feed, and their exclusive 10-day intensive to carry you through the most fragile phase: the start.</p>
       </div>
     </div>
   </div>
@@ -380,9 +383,8 @@
 <!-- BLOCK 4 · CYCLE -->
 <section class="cycle" id="cycle">
   <div class="wrap">
-    <span class="eyebrow sec-eyebrow fade">The cycle</span>
-    <h2 class="sec-title fade">30 days. One mode. Full commitment.</h2>
-    <p class="sec-sub fade">You load money onto your own result, activate the protocol, and switch into a mode of extreme accountability. Reach the end — take the bank. Slip — your stake burns in front of the group. Fair rules for people who respect their word.</p>
+    <span class="eyebrow sec-eyebrow fade">The 30-day cycle</span>
+    <h2 class="sec-title fade">How it works</h2>
     <div class="cycle-steps">
       <div class="step fade">
         <div class="step-label">Morning — the plan is ready</div>
@@ -412,32 +414,30 @@
 <section class="whom">
   <div class="wrap">
     <span class="eyebrow sec-eyebrow fade">Who it's for</span>
-    <h2 class="sec-title fade">For those who play at a high level</h2>
-    <p class="sec-sub fade">Catalyst wasn't built to rescue the lazy. It was built for people who are already successful and refuse to settle.</p>
+    <h2 class="sec-title fade">Catalyst wasn't built to rescue the lazy.<br><span class="whom-hi">It's for those who play at a high level.</span></h2>
     <div class="whom-grid">
       <div class="whom-card fade">
-        <h3>You already deliver — and want more</h3>
-        <p>You know what it takes to finish. Now you need an environment that raises the bar even higher.</p>
+        <h3>You already deliver</h3>
+        <p>But you need an environment that raises the bar even higher.</p>
       </div>
       <div class="whom-card fade">
         <h3>You've outgrown trackers</h3>
-        <p>Todoist, planners, habit apps — all behind you. What's missing isn't a tool. It's the circle and the stake.</p>
+        <p>Standard apps don't work without skin in the game.</p>
       </div>
       <div class="whom-card fade">
         <h3>You want a circle of your caliber</h3>
-        <p>Too many people around you are fine with "good enough." Here are people who do the work every day. Their level becomes yours.</p>
+        <p>To match and multiply your execution.</p>
       </div>
       <div class="whom-card fade">
         <h3>You go all in</h3>
-        <p>You're not looking for a place to relax. You're looking for a place to push and take the next height.</p>
+        <p>And look for extreme tension to clear the next peak.</p>
       </div>
     </div>
-    <p class="whom-closer fade">Most apps are built to pity you — pat you on the head and say you did great, even if you did nothing today. <strong>Catalyst is built the opposite way.</strong> If you come here, you're knowingly signing up for maximum commitment. You're looking for the point of extreme tension, so you can take your next major height.</p>
   </div>
 </section>
 
-<!-- BLOCK 6 · RESULTS -->
-<section class="results">
+<!-- BLOCK 6 · RESULTS — скрыт до появления реальных отзывов/кейсов. Убрать style="display:none" когда будут данные -->
+<section class="results" style="display:none">
   <div class="wrap">
     <span class="eyebrow sec-eyebrow fade">Results</span>
     <h2 class="sec-title fade">Results from those who finished a cycle</h2>
@@ -457,7 +457,7 @@
 <section class="price" id="pricing">
   <div class="wrap">
     <span class="eyebrow sec-eyebrow fade">Pricing</span>
-    <h2 class="sec-title fade">One entry. The whole space is yours.</h2>
+    <h2 class="sec-title fade">Full Access Membership</h2>
     <div class="price-card fade">
       <div class="price-amt">$49.99<span> / month</span></div>
       <ul class="price-list">
@@ -469,22 +469,9 @@
         <li><strong>Access to challenges.</strong> The right to enter 30-day cycles and put real money on your own word.</li>
       </ul>
       <div class="price-actions">
-        <a href="#" class="btn-primary">Activate Catalyst</a>
-        <a href="#" class="btn-ghost">Try 7 days of the full cycle for $15</a>
+        <a href="#" class="btn-primary">Activate Catalyst · $49.99/mo</a>
       </div>
       <p class="price-note">Cancel your subscription in one click.</p>
-    </div>
-  </div>
-</section>
-
-<!-- BLOCK 8 · WHY NOW -->
-<section class="why">
-  <div class="wrap">
-    <span class="eyebrow sec-eyebrow fade">Why now</span>
-    <h2 class="sec-title fade">Your level starts rising the day you walk in</h2>
-    <p class="why-body fade">The gap between those who take new heights and those who stay put isn't talent. It's that the first group landed in the right environment at the right time. It's already forming. People of your caliber are here right now — closing goals, holding the bar, moving forward. Every day you wait is a day spent in the wrong room.</p>
-    <div class="cta-row fade">
-      <a href="#pricing" class="btn-primary">Start a 7-day sprint · $15</a>
     </div>
   </div>
 </section>
@@ -535,9 +522,8 @@
     <h2 class="fade">Take your place among those who win</h2>
     <div class="cta-row fade">
       <a href="#pricing" class="btn-primary">Activate Catalyst · $49.99/mo</a>
-      <a href="#pricing" class="btn-ghost">Start a 7-day sprint · $15</a>
     </div>
-    <p class="cta-note fade">We don't take anyone into the cohort who isn't ready to back their word. Cancel in one click.</p>
+    <p class="cta-note fade">Cancel in one click.</p>
   </div>
 </section>
 
